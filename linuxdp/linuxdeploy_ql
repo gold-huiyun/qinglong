@@ -21,7 +21,7 @@ rm -rf /var/cache/apk/*
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime    
 echo "Asia/Shanghai" > /etc/timezone    
 touch ~/.bashrc       
-git clone -b master https://ghproxy.com/https://github.com/whyour/qinglong.git /ql    
+git clone -b master https://github.com/whyour/qinglong.git /ql    
 git config --global user.email "qinglong@@users.noreply.github.com"    
 git config --global user.name "qinglong"    
 cd /ql    
@@ -34,7 +34,7 @@ pnpm install -g ts-node typescript tslib
 rm -rf /root/.npm    
 pnpm install --prod    
 rm -rf /root/.pnpm-store    
-git clone -b master https://ghproxy.com/https://github.com/whyour/qinglong-static.git /static    
+git clone -b master https://github.com/whyour/qinglong-static.git /static    
 cp -rf /static/* /ql    
 rm -rf /static        
 sleep 2
