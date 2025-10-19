@@ -9,7 +9,7 @@ set -euo pipefail
 # 可配参数（如需自定义可在执行前 export）
 # --------------------------
 QL_MAINTAINER="${QL_MAINTAINER:-whyour}"
-QL_URL="${QL_URL:-https://github.com/${QL_MAINTAINER}/qinglong.git}"
+QL_URL="${QL_URL:-https://gh-proxy.com/https://github.com/${QL_MAINTAINER}/qinglong.git}"
 QL_BRANCH="${QL_BRANCH:-develop}"
 
 QL_DIR="${QL_DIR:-/ql}"
@@ -87,7 +87,7 @@ chmod 777 "${QL_DIR}/shell/"*.sh || true
 chmod 777 "${QL_DIR}/docker/"*.sh || true
 
 echo "[5/6] 拉取静态资源..."
-git clone --depth=1 -b "${QL_BRANCH}" https://github.com/${QL_MAINTAINER}/qinglong-static.git /static
+git clone --depth=1 -b "${QL_BRANCH}" https://gh-proxy.com/https://github.com/${QL_MAINTAINER}/qinglong-static.git /static
 mkdir -p "${QL_DIR}/static"
 cp -rf /static/* "${QL_DIR}/static"
 rm -rf /static
