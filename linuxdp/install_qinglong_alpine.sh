@@ -147,6 +147,32 @@ fi
 # 软限制对齐
 ulimit -c 0 || true
 
+
+# 修补入口脚本路径与 QL_DIR 兜底
+echo "修补入口脚本路径与 QL_DIR 兜底..."
+ENTRY="${QL_DIR}/docker/docker-entrypoint.sh"
+if [ ! -f "$ENTRY" ]; then
+  echo "未找到入口脚本：$ENTRY"
+  exit 1
+fi
+
+# 注入严格模式与 QL_DIR 兜底
+if ! grep -q 'export QL_DIR=' "$ENTRY"; then
+  awk 'NR==1{print; print "set -euo pipefail"; print "export QL_DIR=\"${QL_DIR:-/ql}\""; next}1' "$ENTRY" > "${ENTRY}.tmp" \
+    && mv "${ENTRY}.tmp" "$ENTRY"
+fi
+
+# 统一修复 source 路径为绝对路径
+sed -i \
+  -e 's#\.\s\+\.\/ql\/shell\/share\.sh#. "${QL_DIR}/shell/share.sh"#' \
+  -e 's#\.\s\+\.\/ql\/shell\/env\.sh#. "${QL_DIR}/shell/env.sh"#' \
+  -e 's#\.\s\+\$dir_shell/share\.sh#. "${QL_DIR}/shell/share.sh"#' \
+  -e 's#\.\s\+\$dir_shell/env\.sh#. "${QL_DIR}/shell/env.sh"#' \
+  "$ENTRY"
+
+# （可选）统一 dir_shell 的定义
+#sed -i 's#^dir_shell=.*#dir_shell="${QL_DIR}/shell"#' "$ENTRY"
+
 # 启动
-echo "启动青龙入口脚本..."
-exec bash "${QL_DIR}/docker/docker-entrypoint.sh"
+echo "安装完毕！！启动青龙入口脚本...机器重启后请执行 bash /ql/docker/docker-entrypoint.sh 即可"
+exec bash "${ENTRY}"
