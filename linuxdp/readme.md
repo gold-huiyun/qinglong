@@ -21,7 +21,7 @@ wget https://gh-proxy.com/https://raw.githubusercontent.com/gold-huiyun/qinglong
 用法：sudo sh cninstall_qinglong_alpine.sh 或 bash cninstall_qinglong_alpine.sh
 默认使用 master分支，若需 其他：QL_BRANCH=其他 bash cninstall_qinglong_alpine.sh
 
-Linuxdeploy 自启动，创建 "/etc/rc.local"，rc.local写入以下内容
+Linuxdeploy 自启动，创建 "/etc/rc.local"，(注意赋予执行权限)rc.local写入以下内容
 ```bash
 #!/bin/sh -e
 #
