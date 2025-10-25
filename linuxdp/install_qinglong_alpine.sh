@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # install_qinglong_alpine.sh
 # 适用 Alpine 3.18+，整合新版 Dockerfile 的依赖与结构，并结合你之前的本地安装做法。
-# 默认使用 TUNA 镜像、国内 npm/pip 源，分支默认 develop，可通过环境变量覆盖：QL_BRANCH=master
+# 默认使用 TUNA 镜像、国内 npm/pip 源，分支默认 master，可通过环境变量覆盖：QL_BRANCH=develop
 
 set -euo pipefail
 
