@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install_qinglong_alpine.sh
+# cninstall_qinglong_alpine.sh
 # 适用 Alpine 3.18+，整合新版 Dockerfile 的依赖与结构，并结合你之前的本地安装做法。
 # 默认使用 TUNA 镜像、国内 npm/pip 源，分支默认 master，可通过环境变量覆盖：QL_BRANCH=master
 
@@ -147,6 +147,45 @@ fi
 # 软限制对齐
 ulimit -c 0 || true
 
+# --------------------------
+# 批量修补 /ql/shell 下所有 .sh：把 $QL_DIR / ${QL_DIR} 替换为 /ql
+# 说明：
+# 1) 幂等：重复执行不会破坏内容；
+# 2) 带备份：每个文件生成 .bak.<timestamp>，方便回滚；
+# 3) 同时处理 $QL_DIR 与 ${QL_DIR} 两种写法；
+# 4) 保留其它内容不变；
+# --------------------------
+echo "批量修补 /ql/shell/*.sh 中的 QL_DIR 引用为绝对路径 /ql ..."
+PATCH_TS="$(date +%F-%H%M%S)"
+SHELL_DIR="${QL_DIR}/shell"
+
+# 防御：确保目录存在且有脚本
+if [ ! -d "$SHELL_DIR" ]; then
+  echo "[错误] 未找到目录：$SHELL_DIR"
+  exit 1
+fi
+if ! find "$SHELL_DIR" -type f -name '*.sh' | grep -q .; then
+  echo "[提示] ${SHELL_DIR} 下没有 .sh 文件，无需修补。"
+else
+  # 逐个文件处理，保留备份
+  while IFS= read -r f; do
+    # 只在文件中确实出现变量引用时才处理
+    if grep -Eq '\$\{?QL_DIR\}?([^A-Za-z0-9_]|$)' "$f"; then
+      cp -a "$f" "${f}.bak.${PATCH_TS}"
+      # 将 $QL_DIR 和 ${QL_DIR} 都替换为 /ql
+      # 使用分隔符 |，避免路径斜杠冲突；-E 支持扩展正则
+      # 两次替换分别针对 ${QL_DIR} 与 $QL_DIR 写法
+      sed -E -i \
+        -e 's|\$\{QL_DIR\}|/ql|g' \
+        -e 's|\$QL_DIR|/ql|g' \
+        "$f"
+      echo "[修补] $(basename "$f")"
+    fi
+    # 确保可执行权限
+    chmod +x "$f" || true
+  done < <(find "$SHELL_DIR" -type f -name '*.sh' -print)
+fi
+``
 
 # 修补入口脚本路径与 QL_DIR 兜底
 echo "修补入口脚本路径与 QL_DIR 兜底..."
