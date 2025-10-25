@@ -44,3 +44,26 @@ bash /ql/docker/docker-entrypoint.sh
 
 exit 0
 ```
+python 常用依赖
+
+```bash
+dotenv
+websocket
+websockets
+PyExecJS
+pycryptodome
+aiohttp
+httpx
+lxml
+requests
+urllib3
+chardet
+```
+Nodejs 常用依赖
+
+```bash
+axios
+node-rsa
+crypto-js
+```
+
