@@ -20,3 +20,24 @@ wget https://gh-proxy.com/https://raw.githubusercontent.com/gold-huiyun/qinglong
 保存为：cninstall_qinglong_alpine.sh
 用法：sudo sh cninstall_qinglong_alpine.sh 或 bash cninstall_qinglong_alpine.sh
 默认使用 master分支，若需 其他：QL_BRANCH=其他 bash cninstall_qinglong_alpine.sh
+
+Linuxdeploy 自启动，创建 "/etc/rc.local"，rc.local写入以下内容
+```bash
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+cd /ql/docker
+./docker-entrypoint.sh
+
+exit 0
+```
