@@ -10,7 +10,7 @@ set -euo pipefail
 # --------------------------
 QL_MAINTAINER="${QL_MAINTAINER:-whyour}"
 QL_URL="${QL_URL:-https://gh-proxy.com/https://github.com/${QL_MAINTAINER}/qinglong.git}"
-QL_BRANCH="${QL_BRANCH:-develop}"
+QL_BRANCH="${QL_BRANCH:-master}"
 
 QL_DIR="${QL_DIR:-/ql}"
 PNPM_HOME="${PNPM_HOME:-${QL_DIR}/data/dep_cache/node}"
