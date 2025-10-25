@@ -21,6 +21,10 @@ wget https://gh-proxy.com/https://raw.githubusercontent.com/gold-huiyun/qinglong
 用法：sudo sh cninstall_qinglong_alpine.sh 或 bash cninstall_qinglong_alpine.sh
 默认使用 master分支，若需 其他：QL_BRANCH=其他 bash cninstall_qinglong_alpine.sh
 
+#系统重启后青龙启动脚本
+bash /ql/docker/docker-entrypoint.sh
+
+
 Linuxdeploy 自启动，设置勾选初始化，初始化勾选异步，创建 "/etc/rc.local"，(注意赋予执行权限 chmod +x rc.local)rc.local写入以下内容
 ```bash
 #!/bin/sh -e
@@ -35,9 +39,8 @@ Linuxdeploy 自启动，设置勾选初始化，初始化勾选异步，创建 "
 # bits.
 #
 # By default this script does nothing.
-
-cd /ql/docker
-./docker-entrypoint.sh
+#青龙启动脚本
+bash /ql/docker/docker-entrypoint.sh
 
 exit 0
 ```
