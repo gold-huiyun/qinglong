@@ -1,6 +1,7 @@
 Alpine 直接安装一键脚本（带国内镜像优化）
 适用 Alpine 3.18+，整合新版 Dockerfile 的依赖与结构
-情景：你现在就是在一台 Alpine 主机上，想直接安装并运行青龙，不用 Docker。
+情景：你现在就是在一台 Alpine 主机上，直接安装并运行青龙，不用 Docker。
+#注意相关命令：
 ```bash
  apk add bash sudo
 ```
