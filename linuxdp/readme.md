@@ -25,7 +25,7 @@ wget https://gh-proxy.com/https://raw.githubusercontent.com/gold-huiyun/qinglong
 bash /ql/docker/docker-entrypoint.sh
 
 
-Linuxdeploy 自启动，设置勾选初始化，初始化勾选异步，创建 "/etc/rc.local"，(注意赋予执行权限 chmod +x rc.local)rc.local写入以下内容
+Linuxdeploy 自启动，设置勾选初始化，初始化勾选异步，vi创建 "/etc/rc.local"，mobax终端会有编码问题不要直接在终端FTP创建，可以本地上传文件rc.local(注意赋予执行权限 chmod +x rc.local)rc.local写入以下内容
 ```bash
 #!/bin/sh -e
 #
