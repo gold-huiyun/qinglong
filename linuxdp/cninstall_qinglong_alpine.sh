@@ -156,9 +156,9 @@ if [ ! -f "$ENTRY" ]; then
   exit 1
 fi
 
-# 注入严格模式与 QL_DIR 兜底
+# 在 shebang 之后仅注入 QL_DIR 兜底（一次性）
 if ! grep -q 'export QL_DIR=' "$ENTRY"; then
-  awk 'NR==1{print; print "set -euo pipefail"; print "export QL_DIR=\"${QL_DIR:-/ql}\""; next}1' "$ENTRY" > "${ENTRY}.tmp" \
+  awk 'NR==1{print; print "export QL_DIR=\"${QL_DIR:-/ql}\""; next}1' "$ENTRY" > "${ENTRY}.tmp" \
     && mv "${ENTRY}.tmp" "$ENTRY"
 fi
 
