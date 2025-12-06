@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # install_qinglong_alpine.sh
 # 适用 Alpine 3.18+，整合新版 Dockerfile 的依赖与结构，并结合你之前的本地安装做法。
-# 默认使用 TUNA 镜像、国内 npm/pip 源，分支默认 master，可通过环境变量覆盖：QL_BRANCH=develop
+# 默认使用 阿里 镜像、国内 npm/pip 源，分支默认 master，可通过环境变量覆盖：QL_BRANCH=develop
 
 set -euo pipefail
 
@@ -18,10 +18,12 @@ PYTHON_HOME="${PYTHON_HOME:-${QL_DIR}/data/dep_cache/python3}"
 PYTHON_SHORT_VERSION="${PYTHON_SHORT_VERSION:-3.11}"
 
 # 国内源
-#ALPINE_MIRROR="${ALPINE_MIRROR:-mirrors.tuna.tsinghua.edu.cn}" #清华源
+# 国内源
+#ALPINE_MIRROR="${ALPINE_MIRROR:-mirrors.tuna.tsinghua.edu.cn}" #清华源抽风
 ALPINE_MIRROR="${ALPINE_MIRROR:-mirrors.aliyun.com}"
 NPM_REGISTRY="${NPM_REGISTRY:-https://registry.npmmirror.com}"
-PIP_INDEX_URL="${PIP_INDEX_URL:-https://pypi.tuna.tsinghua.edu.cn/simple}"
+#PIP_INDEX_URL="${PIP_INDEX_URL:-https://pypi.tuna.tsinghua.edu.cn/simple}"#清华源抽风
+PIP_INDEX_URL="${PIP_INDEX_URL:-http://mirrors.aliyun.com/pypi/simple}"
 
 # --------------------------
 # 基础优化：Alpine 源、时区
