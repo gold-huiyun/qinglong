@@ -14,11 +14,15 @@ Termux 官方的 `proot-distro` 会用更稳的配置与更新的 `proot`/`proot
 2. **安装并用 `proot-distro` 部署 Alpine：**
    ```bash
    pkg install -y proot-distro
+   ```
+   ```bash
    proot-distro install alpine
+   ```
+   ```bash
    proot-distro login alpine
    ```
 
-3. **进入后再试：**
+3. **进入后：**
    ```bash
    apk update
    apk add bash
