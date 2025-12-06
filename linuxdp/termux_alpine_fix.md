@@ -1,6 +1,6 @@
-# Termux 安装 Alpine 后 `apk add bash` 报错修复方案（推荐方案一）
+# Termux 安装 Alpine 
 
-## ✅ 推荐方案一：改用 `proot-distro` 官方安装 Alpine（最稳）
+## ✅ ：用 `proot-distro` 官方安装 Alpine（最稳）
 
 Termux 官方的 `proot-distro` 会用更稳的配置与更新的 `proot`/`proot-rs`，避免这些触发脚本错误。
 
@@ -26,7 +26,3 @@ Termux 官方的 `proot-distro` 会用更稳的配置与更新的 `proot`/`proot
 
 ---
 
-### 为什么推荐这个方案？
-- 使用官方维护的 `proot-distro`，避免第三方脚本兼容性问题。
-- 自动配置更稳定的 `proot` 参数，减少 `execveat()` 报错。
-- Alpine 镜像干净且可选版本，后续升级更方便。
