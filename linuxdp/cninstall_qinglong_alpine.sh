@@ -22,7 +22,7 @@ PYTHON_SHORT_VERSION="${PYTHON_SHORT_VERSION:-3.11}"
 ALPINE_MIRROR="${ALPINE_MIRROR:-mirrors.aliyun.com}"
 NPM_REGISTRY="${NPM_REGISTRY:-https://registry.npmmirror.com}"
 #PIP_INDEX_URL="${PIP_INDEX_URL:-https://pypi.tuna.tsinghua.edu.cn/simple}"#清华源抽风
-PIP_INDEX_URL="${PIP_INDEX_URL:-http://mirrors.aliyun.com/pypi/simple}"
+PIP_INDEX_URL="${PIP_INDEX_URL:-https://mirrors.aliyun.com/pypi/simple}"
 
 # --------------------------
 # 基础优化：Alpine 源、时区
