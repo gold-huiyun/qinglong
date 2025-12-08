@@ -18,7 +18,6 @@ PYTHON_HOME="${PYTHON_HOME:-${QL_DIR}/data/dep_cache/python3}"
 PYTHON_SHORT_VERSION="${PYTHON_SHORT_VERSION:-3.11}"
 
 # 国内源
-# 国内源
 #ALPINE_MIRROR="${ALPINE_MIRROR:-mirrors.tuna.tsinghua.edu.cn}" #清华源抽风
 ALPINE_MIRROR="${ALPINE_MIRROR:-mirrors.aliyun.com}"
 NPM_REGISTRY="${NPM_REGISTRY:-https://registry.npmmirror.com}"
