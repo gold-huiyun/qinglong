@@ -159,7 +159,7 @@ ulimit -c 0 || true
 # --------------------------
 echo "批量修补 /ql/shell/*.sh 中的 QL_DIR 引用为绝对路径 /ql ..."
 PATCH_TS="$(date +%F-%H%M%S)"
-SHELL_DIR="${QL_DIR}/shell"
+SHELL_DIR="/ql/shell"
 
 # 防御：确保目录存在且有脚本
 if [ ! -d "$SHELL_DIR" ]; then
