@@ -166,7 +166,7 @@ if [ ! -d "$SHELL_DIR" ]; then
   echo "[错误] 未找到目录：$SHELL_DIR"
   exit 1
 fi
-if ! find "$SHELL_DIR" -type f -name '*.sh' | grep -q .; then
+if ! find "$SHELL_DIR" -maxdepth 1 -type f -name '*.sh' -print -quit 2>/dev/null | grep -q .; then
   echo "[提示] ${SHELL_DIR} 下没有 .sh 文件，无需修补。"
 else
   # 逐个文件处理，保留备份
